@@ -60,7 +60,7 @@ export async function update(
     }
   }
 
-  log(`Update aztec-sandbox and aztec-cli Docker containers by following instructions at ${UPDATE_DOCS_URL}\n`);
+  log(`Update Docker containers using aztec-up\n`);
 
   projectDependencyChanges.forEach(changes => {
     printChanges(changes, log);
