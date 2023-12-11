@@ -10,7 +10,6 @@ import { updateAztecNr } from './noir.js';
 import { getNewestVersion, updateAztecDeps, updateLockfile } from './npm.js';
 
 const AZTECJS_PACKAGE = '@aztec/aztec.js';
-const UPDATE_DOCS_URL = 'https://docs.aztec.network/dev_docs/updating';
 
 export async function update(
   projectPath: string,
