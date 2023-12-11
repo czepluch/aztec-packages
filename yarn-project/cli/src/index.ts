@@ -753,7 +753,7 @@ export function getProgram(log: LogFn, debugLogger: DebugLogger): Command {
     .addOption(pxeOption)
     .action(async (projectPath: string, options) => {
       const { contract } = options;
-      await update(projectPath, contract, options.rpcUrl, options.aztecVersion, log, debugLogger);
+      await update(projectPath, contract, options.rpcUrl, options.aztecVersion, log);
     });
 
   compileNoir(program, 'compile', log);

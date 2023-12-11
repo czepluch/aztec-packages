@@ -1,10 +1,9 @@
 /* eslint-disable jsdoc/require-jsdoc */
-import { DebugLogger, LogFn } from '@aztec/foundation/log';
+import { LogFn } from '@aztec/foundation/log';
 
 import { relative, resolve } from 'path';
-import { SemVer, lt, parse } from 'semver';
+import { parse } from 'semver';
 
-import { createCompatibleClient } from '../client.js';
 import { GITHUB_TAG_PREFIX } from '../github.js';
 import { DependencyChanges } from './common.js';
 import { updateAztecNr } from './noir.js';
@@ -19,7 +18,6 @@ export async function update(
   pxeUrl: string,
   aztecVersion: string,
   log: LogFn,
-  debugLog: DebugLogger,
 ): Promise<void> {
   const targetAztecVersion =
     aztecVersion === 'latest' ? await getNewestVersion(AZTECJS_PACKAGE, 'latest') : parse(aztecVersion);
@@ -27,8 +25,6 @@ export async function update(
   if (!targetAztecVersion) {
     throw new Error(`Invalid aztec version ${aztecVersion}`);
   }
-
-  await compareSandboxVersion(targetAztecVersion, pxeUrl, log, debugLog);
 
   const projectDependencyChanges: DependencyChanges[] = [];
   try {
@@ -64,6 +60,8 @@ export async function update(
     }
   }
 
+  log(`Update aztec-sandbox and aztec-cli Docker containers by following instructions at ${UPDATE_DOCS_URL}\n`);
+
   projectDependencyChanges.forEach(changes => {
     printChanges(changes, log);
   });
@@ -77,32 +75,5 @@ function printChanges(changes: DependencyChanges, log: LogFn): void {
     changes.dependencies.forEach(({ name, from, to }) => {
       log(`  Updated ${name} from ${from} to ${to}`);
     });
-  }
-}
-
-/**
- * Checks if the sandbox version is older than the target version and prints a warning if so.
- * If the sandbox is not running then it will print a warning message instead of throwing.
- *
- * @param targetAztecVersion - The version to update to
- * @param pxeUrl - URL of the PXE.
- * @param log - Logging function
- * @param debugLog - Logging function
- */
-async function compareSandboxVersion(targetAztecVersion: SemVer, pxeUrl: string, log: LogFn, debugLog: DebugLogger) {
-  try {
-    const client = await createCompatibleClient(pxeUrl, debugLog);
-    const nodeInfo = await client.getNodeInfo();
-    const runningSandboxVersion = parse(nodeInfo.sandboxVersion);
-    if (!runningSandboxVersion) {
-      throw new Error();
-    }
-
-    if (lt(runningSandboxVersion, targetAztecVersion)) {
-      log(`
-Aztec Sandbox is older than version ${targetAztecVersion}. Follow update instructions at ${UPDATE_DOCS_URL}\n`);
-    }
-  } catch (err) {
-    log(`Aztec Sandbox not running. Update to ${targetAztecVersion} by following instructions at ${UPDATE_DOCS_URL}\n`);
   }
 }
