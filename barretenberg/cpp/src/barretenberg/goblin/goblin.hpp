@@ -11,7 +11,9 @@
 namespace barretenberg {
 
 class Goblin {
-    using HonkProof = proof_system::plonk::proof;
+    using Fr = barretenberg::fr;
+    using Fq = barretenberg::fq;
+    using HonkProof = proof_system::honk::proof<Fr>;
 
   public:
     /**
@@ -31,10 +33,7 @@ class Goblin {
         TranslationEvaluations translation_evaluations;
     };
 
-    using Fr = barretenberg::fr;
-    using Fq = barretenberg::fq;
-
-    using Transcript = proof_system::honk::BaseTranscript;
+    using Transcript = proof_system::honk::BaseTranscript<Fr>;
     using GoblinUltraComposer = proof_system::honk::GoblinUltraComposer;
     using GoblinUltraCircuitBuilder = proof_system::GoblinUltraCircuitBuilder;
     using OpQueue = proof_system::ECCOpQueue;

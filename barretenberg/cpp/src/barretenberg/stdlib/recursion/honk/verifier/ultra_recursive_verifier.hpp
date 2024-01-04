@@ -3,7 +3,7 @@
 #include "barretenberg/flavor/goblin_ultra_recursive.hpp"
 #include "barretenberg/flavor/ultra.hpp"
 #include "barretenberg/flavor/ultra_recursive.hpp"
-#include "barretenberg/plonk/proof_system/types/proof.hpp"
+#include "barretenberg/honk/proof_system/types/proof.hpp"
 #include "barretenberg/stdlib/recursion/honk/transcript/transcript.hpp"
 #include "barretenberg/sumcheck/sumcheck.hpp"
 
@@ -11,6 +11,7 @@ namespace proof_system::plonk::stdlib::recursion::honk {
 template <typename Flavor> class UltraRecursiveVerifier_ {
   public:
     using FF = typename Flavor::FF;
+    using NativeFF = typename Flavor::NativeFF;
     using Commitment = typename Flavor::Commitment;
     using GroupElement = typename Flavor::GroupElement;
     using VerificationKey = typename Flavor::VerificationKey;
@@ -29,7 +30,7 @@ template <typename Flavor> class UltraRecursiveVerifier_ {
 
     // TODO(luke): Eventually this will return something like aggregation_state but I'm simplifying for now until we
     // determine the exact interface. Simply returns the two pairing points.
-    PairingPoints verify_proof(const plonk::proof& proof);
+    PairingPoints verify_proof(const proof_system::honk::proof<NativeFF>& proof);
 
     std::shared_ptr<VerificationKey> key;
     std::map<std::string, Commitment> commitments;
