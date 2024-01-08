@@ -1,4 +1,5 @@
 import { GlobalVariables } from '@aztec/circuits.js';
+import { times } from '@aztec/foundation/collection';
 import { Fr } from '@aztec/foundation/fields';
 import { createDebugLogger } from '@aztec/foundation/log';
 import { RunningPromise } from '@aztec/foundation/running-promise';
@@ -7,8 +8,6 @@ import { P2P } from '@aztec/p2p';
 import { L1ToL2MessageSource, L2Block, L2BlockSource, MerkleTreeId, Tx } from '@aztec/types';
 import { L2BlockBuiltStats } from '@aztec/types/stats';
 import { WorldStateStatus, WorldStateSynchronizer } from '@aztec/world-state';
-
-import times from 'lodash.times';
 
 import { BlockBuilder } from '../block_builder/index.js';
 import { GlobalVariableBuilder } from '../global_variable_builder/global_builder.js';

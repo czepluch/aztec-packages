@@ -9,6 +9,7 @@ import {
   MAX_PUBLIC_DATA_UPDATE_REQUESTS_PER_TX,
   NUMBER_OF_L1_L2_MESSAGES_PER_ROLLUP,
 } from '@aztec/circuits.js';
+import { times } from '@aztec/foundation/collection';
 import { createDebugLogger } from '@aztec/foundation/log';
 import { sleep } from '@aztec/foundation/sleep';
 import { INITIAL_LEAF, Pedersen } from '@aztec/merkle-tree';
@@ -25,7 +26,6 @@ import {
 import { jest } from '@jest/globals';
 import { mock } from 'jest-mock-extended';
 import levelup from 'levelup';
-import times from 'lodash.times';
 import { default as memdown } from 'memdown';
 
 import { MerkleTreeDb, MerkleTrees, WorldStateConfig } from '../index.js';

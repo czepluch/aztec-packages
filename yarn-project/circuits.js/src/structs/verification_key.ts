@@ -1,6 +1,5 @@
+import { times } from '@aztec/foundation/collection';
 import { BufferReader } from '@aztec/foundation/serialize';
-
-import times from 'lodash.times';
 
 import { serializeToBuffer } from '../utils/serialize.js';
 import { Fq } from './index.js';

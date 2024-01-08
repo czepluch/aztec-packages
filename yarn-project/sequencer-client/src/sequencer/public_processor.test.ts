@@ -26,6 +26,7 @@ import {
   makeSelector,
 } from '@aztec/circuits.js/factories';
 import { padArrayEnd } from '@aztec/foundation/collection';
+import { times } from '@aztec/foundation/collection';
 import {
   ExtendedContractData,
   FunctionCall,
@@ -39,7 +40,6 @@ import {
 import { MerkleTreeOperations, TreeInfo } from '@aztec/world-state';
 
 import { MockProxy, mock } from 'jest-mock-extended';
-import times from 'lodash.times';
 
 import { PublicProver } from '../prover/index.js';
 import { PublicKernelCircuitSimulator } from '../simulator/index.js';
