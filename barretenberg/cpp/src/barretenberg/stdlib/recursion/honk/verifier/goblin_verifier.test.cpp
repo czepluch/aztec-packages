@@ -255,7 +255,7 @@ template <typename BuilderType> class GoblinRecursiveVerifierTest : public testi
 };
 
 // Run the recursive verifier tests with conventional Ultra builder and Goblin builder
-using BuilderTypes = testing::Types<GoblinUltraCircuitBuilder>;
+using BuilderTypes = testing::Types<UltraCircuitBuilder, GoblinUltraCircuitBuilder>;
 
 TYPED_TEST_SUITE(GoblinRecursiveVerifierTest, BuilderTypes);
 
