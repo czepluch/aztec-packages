@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/AztecProtocol/aztec-packages/compare/barretenberg.js-v0.17.0...barretenberg.js-v0.18.0) (2024-01-10)
+
+
+### Features
+
+* Bootstrap cache v2 ([#3876](https://github.com/AztecProtocol/aztec-packages/issues/3876)) ([331598d](https://github.com/AztecProtocol/aztec-packages/commit/331598d369ab9bb91dcc48d50bdd8df0684f0b79))
+
 ## [0.17.0](https://github.com/AztecProtocol/aztec-packages/compare/barretenberg.js-v0.16.9...barretenberg.js-v0.17.0) (2024-01-09)
 
 
